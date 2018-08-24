@@ -1,0 +1,105 @@
+```Assignment name  : ulstr
+Expected files   : ulstr.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes a string and reverses the case of all its letters.
+Other characters remain unchanged.
+
+You must display the result followed by a '\n'.
+
+If the number of arguments is not 1, the program displays '\n'.
+
+Examples :
+
+$>./ulstr "PeTEr PIpeR pICKeD A PeCK of pIckLEd PEPPers." | cat -e
+pEteR piPEr PickEd a pEck OF PiCKleD peppERS.$
+$>./ulstr "A pEcK OF picKLED pePPErS PeTEr PIpeR picked.  " | cat -e
+a PeCk of PICkled PEppeRs pEteR piPEr PICKED.  $
+$>./ulstr | cat -e
+$```
+```Assignment name  : range_comb
+Expected files   : range_comb.c
+Allowed functions: malloc free memcpy
+--------------------------------------------------------------------------------
+
+Implement a function which computes, for a given integer n, all
+the possible permutations of the numbers in the range from 0 to
+(n - 1) inclusive.
+The function returns a null-terminated array.
+
+Your function must be declared as follows:
+
+int    **range_comb(int n);
+
+If n <= 0, the function returns NULL;
+
+The array must be sorted as in the examples.
+
+Examples:
+
+input  = 2
+output = {{0, 1}, {1, 0}}
+
+input  = 3
+output = {{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}}```
+```Assignment name  : sort_int_tab
+Expected files   : sort_int_tab.c
+Allowed functions:
+--------------------------------------------------------------------------------
+
+Write the following function:
+
+void sort_int_tab(int *tab, unsigned int size);
+
+It must sort (in-place) the 'tab' int array, that contains exactly 'size'
+members, in ascending order.
+
+Doubles must be preserved.
+
+Input is always coherent.```
+```Assignment name  : ord_alphlong
+Expected files   : *.c, *.h
+Allowed functions: write, malloc, free
+--------------------------------------------------------------------------------
+
+Write a program that takes a string as a parameter and prints its words sorted
+in order of their length first and then in alphabetical order on each line:
+when we say alphabetical order we ignore the case of letters.
+
+For example aA and Aa are the same but the  original order must remain
+(lower and upper case are the same in alphabetical order). If there are
+duplicates, they must remain.
+
+If number of parameters is different from 1, the program prints
+\n.
+
+There will be only spaces, tabs and alphanumeric caracters in strings.
+
+You'll print only one space between each word. Nothing before the first and
+after the last word of each line.
+
+Examples:
+
+$>./ord_alphlong
+$
+$>./ord_alphlong "After all this time Always said Snape" | cat -e
+all$
+said this time$
+After Snape$
+Always$
+$>./ord_alphlong "A a b B cc ca cd" | cat -e
+A a b B$
+ca cc cd$
+$>./ord_alphlong "Never take a gamble you are not prepared to lose" | cat -e
+a$
+to$
+are not you$
+lose take$
+Never$
+gamble$
+prepared$
+$>```
+
+
+
