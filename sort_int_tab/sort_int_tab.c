@@ -13,13 +13,13 @@ int     check_sort(int *tab, unsigned int size)
     {
         if (tab[size] < tab[size - 1])
             return (0);
+        size--;
     }
     return (1);
 }
 
 void    sort_int_tab(int *tab, unsigned int size)
 {
-    int             tmp;
     unsigned int    i;
     int             sorted;
 
