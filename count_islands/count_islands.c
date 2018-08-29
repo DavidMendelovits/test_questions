@@ -18,13 +18,16 @@
 void		read_into_struct(char *buffer, t_island *islands)
 {
 	int			i;
-	static int	map_line_ptr = 0;
-	static int	first_malloc = 0;
-	static int	times_called = 0;
+	static int		begin = 0;
+	int			end;
+	static int		map_line_ptr = 0;
+	static int		first_malloc = 0;
+	static int		times_called = 0;
 
+	
 	i = 0;
 	printf("\nfunction read_into_struct has been called %d times\n", times_called++);
-	while (buffer[i] != EOF || buffer[i] != '\n')
+	while (buffer[i] != EOF || buffer[i] != '\n' || buffer[i] != '\0')
 	{
 		if (buffer[i] == '\n')
 		{
@@ -33,13 +36,16 @@ void		read_into_struct(char *buffer, t_island *islands)
 				islands->map = malloc(sizeof(islands->map) * (i + 1));
 				first_malloc = 1;
 			}
-			islands->map[map_line_ptr] = ft_strdup_range(&buffer[0], 0, i);
+			end = i;
+			islands->map[map_line_ptr] = ft_strdup_range(&buffer[0], begin, end);
 			printf("\nfunction -> read_into_struct: islands->map[%d] = \n%s\n", map_line_ptr, islands->map[map_line_ptr]);
 			map_line_ptr += 1;
+			begin = i;
 
 		}
 		i += 1;
 	}
+	printf("\nend read_into_struct\n");
 }
 
 void		read_map(int fd, t_island *islands)
