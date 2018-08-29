@@ -73,6 +73,8 @@ void    allocate_sorted_words(t_sort *sort)
     }
 }
 
+
+int	find_words(char *str, 
 void    alphlong(char *str)
 {
     int         i;
@@ -91,6 +93,6 @@ int     main(int argc, char **argv)
     {
         alphlong(argv[1]);
     }
-    ft_putstr("\n");
+    ft_putstr("\n"); 
     return (0);
 }
