@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 13:42:12 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/29 14:30:30 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/29 16:57:45 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -21,7 +21,7 @@ typedef struct	s_island
 	int		filled_spots;
 	int		count;
 	int		valid_map:1;
-	char	**map;
+	char	map[1024][1024];
 }		t_island;
 
 

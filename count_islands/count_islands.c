@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 13:42:02 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/29 14:30:26 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/29 17:07:29 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 #define BUF_SIZE 1024
 
-
+/*
 void		read_into_struct(char *buffer, t_island *islands)
 {
-	int			i;
+	int				i;
 	static int		begin = 0;
-	int			end;
+	int				end;
 	static int		map_line_ptr = 0;
 	static int		first_malloc = 0;
 	static int		times_called = 0;
@@ -43,21 +43,52 @@ void		read_into_struct(char *buffer, t_island *islands)
 			begin = i;
 
 		}
+		else if (i == 1023)
+		{
+
+		}
 		i += 1;
 	}
 	printf("\nend read_into_struct\n");
 }
+*/
+
+
+int			check_character(char c)
+{
+	if (c != '.' || c != 'X' ||  c != '\0')
+	{
+		return (0);
+	}
+	return (1);
+}
 
 void		read_map(int fd, t_island *islands)
 {
-	char		buffer[BUF_SIZE];
+	char		point;
+	int			map_line_ptr;
 	int			i;
 
 	i = 0;
-	while (read(fd, &buffer, BUF_SIZE))
+	map_line_ptr = 0;
+	while (read(fd, &point, 1))
 	{
-		read_into_struct(buffer, islands);
-		break ;
+		islands->map[map_line_ptr][i] = point;
+		if (islands->map[map_line_ptr][i] == '\n')
+		{
+			printf("%s", islands->map[map_line_ptr]);
+			map_line_ptr += 1;
+			i = 0;
+		}
+//		else if (!check_character(islands->map[map_line_ptr][i]))
+//		{
+//			printf("\n\nINVALID CHARACTER READ. TRY AGAIN\n\n");
+//			return ;
+//		}
+		else
+		{
+			i += 1;
+		}
 	}
 }
 
