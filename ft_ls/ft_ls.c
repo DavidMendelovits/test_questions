@@ -237,16 +237,16 @@ void                sort_alphabet(t_dir **head, t_op *o)
         }
     }
 }
-/*
+
 void                extract_stats(t_dir **node, struct stat buf)
 {
     printf("->%s\n", __func__);
     (*node)->file->mode = buf.st_mode;
-    if ((buf.st_mode & S_IFMT) == S_IFDIR)
+    if (S_ISDIR(buf.st_mode))
     {
         printf("%s is a directory\n", (*node)->file->name);
     }
-    else if ((buf.st_mode & S_IFMT) == S_IFREG)
+    else if (S_ISREG(buf.st_mode))
     {
         printf("%s is a regular file\n", (*node)->file->name);
     }
@@ -262,12 +262,12 @@ void                long_format(t_dir **head, t_op *o)
     tmp = *head;
     while (tmp)
     {
-        lstat(tmp->file->name, buf);
+        lstat(tmp->file->name, &buf);
         extract_stats(&tmp, buf);
         tmp = tmp->next;
     }
 }
-*/
+
 int                 ft_ls(char *path, t_op *o)
 {
     printf("->%s\n", __func__);
@@ -276,7 +276,7 @@ int                 ft_ls(char *path, t_op *o)
     dir = read_directory(path, o);
     if (o->l)
     {
-//        long_format(&dir, o);
+        long_format(&dir, o);
     }
     if (o->t)
     {
