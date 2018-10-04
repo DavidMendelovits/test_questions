@@ -266,8 +266,8 @@ void            read_uid_gid(t_file **file, struct stat buf)
     uid = getpwuid(buf.st_uid);
     gid = getgrgid(buf.st_gid);
 
-//    printf("%s\n", uid->pw_name);
-  //  (*file)->uid = strdup(uid->pw_name);
+    printf("%s\n", (*file)->name);
+    (*file)->uid = strdup(uid->pw_name);
 
     printf("we got here\n");
     (*file)->gid = strdup(gid->gr_name);
@@ -377,7 +377,7 @@ void            print_options(t_op o)
     }
     if (o.l)
     {
-        printf("o\n");
+        printf("l\n");
     }
     if (o.r)
     {
