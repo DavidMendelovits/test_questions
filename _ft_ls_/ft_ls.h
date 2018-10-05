@@ -27,6 +27,7 @@ typedef struct      s_file
 {
     char            *name;
     char            permissions[10];
+    size_t          links;
     char            *uid;
     char            *gid;
     time_t          time;
