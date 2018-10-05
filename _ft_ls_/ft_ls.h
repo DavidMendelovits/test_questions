@@ -10,6 +10,7 @@
 #include <grp.h>
 #include <dirent.h>
 #include <time.h>
+#include <errno.h>
 #include <strings.h>
 #include <string.h>
 

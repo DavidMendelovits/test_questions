@@ -54,7 +54,7 @@ int                 opt_check(t_opt *o, char *arg)
     WOW();
     int             i;
 
-    i = 0;
+    i = 1;
     while (arg[i])
     {
         if (arg[i] == 'l')
@@ -80,7 +80,8 @@ int                 opt_check(t_opt *o, char *arg)
         else
         {
             return (0);
-        }
+        
+		}
         i += 1;
     }
     return (1);
@@ -100,6 +101,7 @@ t_list              *split_options(t_opt *o, int argc, char **argv)
         {
             if (!opt_check(o, argv[i]))
             {
+				printf("invalid opt\n");
                 return (NULL);
             }
         }
@@ -109,7 +111,61 @@ t_list              *split_options(t_opt *o, int argc, char **argv)
         }
         i += 1;
     }
+	if (!paths)
+	{
+		add_path_front(&paths, ".");
+	}
     return (paths);
+}
+
+
+
+t_dir				*read_dir(char *path, t_opt *o)
+{
+	DIR				*dirp;
+	t_dir			*dir;
+
+	dir = NULL;
+	dirp = opendir(path);
+	if (!dirp && errno == ENOENT)
+	{
+		printf("invalid path!\n");
+		return (NULL);
+	}
+	else if (!dirp && errno == ENOTDIR)
+	{
+		printf("%s is file, not dir\n", path);
+		add_entry_front(&dir, path);
+		return (dir);
+	}
+	else if (dirp)
+	{
+		dir = read_entries(dirp, path, o);
+	}
+}
+
+int					ft_ls(char *path, t_opt *o)
+{
+	t_dir			*dir;
+
+	dir = read_dir(path, o);
+}
+
+void				queue_paths(t_list *paths, t_opt *o)
+{
+	WOW();
+	if (!paths)
+	{
+		return ;
+	}
+	if (paths->path)
+	{
+		ft_ls(paths->path, o);
+	}
+	if (paths->next)
+	{
+		queue_paths(paths->next, o);
+	}
 }
 
 int                 main(int argc, char **argv)
@@ -127,6 +183,14 @@ int                 main(int argc, char **argv)
     {
         paths = split_options(&options, argc, argv);
         print_paths(paths);
+		if (paths)
+		{
+			queue_paths(paths, &o);
+		}
+		else
+		{
+			return (1);
+		}
     }
-    return (1);
+    return (0);
 }
